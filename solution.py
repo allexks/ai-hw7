@@ -110,9 +110,9 @@ class KMeans:
 
 
 def plot_solution(solution: KMeans):
-        x = [p.x for p in points]
-        y = [p.y for p in points]
-        c = [solution.points_to_clusters_dict[p] for p in points]
+        x = [p.x for p in solution.points]
+        y = [p.y for p in solution.points]
+        c = [solution.points_to_clusters_dict[p] for p in solution.points]
         plt.scatter(x=x, y=y, c=c)
         plt.show()
 
@@ -164,7 +164,7 @@ if __name__ == "__main__":
         if solution is None:
             solution = kMeans
             solution_eval = current
-        elif solution_eval[1] < current[1]:
+        elif solution_eval[0] < current[0] or (solution_eval[0] == current[0] and solution_eval[1] < current[1]):
             print("Current is better.")
             solution = kMeans
             solution_eval = current
